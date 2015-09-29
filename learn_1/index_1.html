@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../bower_components/react/react.js"></script>
+    <!--引入babel browser core -->
+    <script src="../node_modules/babel/node_modules/babel-core/browser.js"></script>
+    <style>
+        .hello {
+            font-size: 18px;
+            color: #000;
+            font-family:monospace;
+        }
+    </style>
+</head>
+<body>
+    <div id="reactLearn" class="react_learn_1">
+        <p>this is reload demo</p>
+    </div>
+    <script type="text/babel">
+        React.render(
+            <h1 className='hello'>Hello2, world</h1>,
+            document.getElementById("reactLearn")
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../bower_components/react/react.js"></script>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <script src="../bower_components/react/JSXTransformer.js"></script>
+    <style>
+        .hello {
+            font-size: 18px;
+            color: #000;
+            font-family:monospace;
+        }
+        body {
+        background: #ddeecc;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">this is test</div>
+    <div id="reactLearn"></div>
+    <div id="reactLearn2"></div>
+    <div id="reactLearn3"></div>
+    <script type="text/jsx">
+        React.render(
+            <h1 className='hello'>Hello, world</h1>,
+            document.getElementById("reactLearn")
+        );
+
+        /**创建一个HelloMessage**的组件**/
+        var HelloMessage = React.createClass({
+            render: function () {
+                return <div>Hello {this.props.name}</div>
+            }
+        })
+
+        React.render(<HelloMessage name="John" />,document.getElementById("reactLearn2"));
+
+        var Timer = React.createClass({
+
+            getInitialState: function () {
+                return {secondsElapsed: 0};
+            },
+            tick: function () {
+                this.setState({
+                    secondsElapsed: this.state.secondsElapsed + 1
+                })
+            },
+            componentDidMount: function () {
+                this.interval = setInterval(this.tick, 1000);
+            },
+            render: function () {
+                return (
+                    <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+                )
+            }
+        })
+        var moundNode = document.getElementById("reactLearn3")
+        React.render(<Timer />,moundNode)
+
+    </script>
+</body>

@@ -1,0 +1,24 @@
+{
+  "name": "react_zero_start",
+  "version": "0.0.1",
+  "description": "react zero start learn",
+  "keywords": [
+    "react",
+    "react-learn"
+  ],
+  "authors": [
+    "baozi"
+  ],
+  "license": "MIT",
+  "homepage": "github.com/alanerzhao/react-zero-start",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3"
+  }
+}

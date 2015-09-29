@@ -1,0 +1,24 @@
+{
+  "name": "react-zero-start",
+  "version": "0.0.1",
+  "description": "react zero learn",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --config bs-config.js",
+    "test": "browser-sync start --server --files learn_1 --port 4444"
+  },
+  "keywords": [
+    "react",
+    "learn"
+  ],
+  "author": "baozi",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^5.8.23"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.6",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1"
+  }
+}
