@@ -1,3 +1,10 @@
+//es6  syntax
+class HelloMessage extends React.Component {
+  render() {
+      return <div>Hello {this.props.name}</div>;
+    }
+}
+
 var TodoList = React.createClass({
     render: function () {
        var createItem = function (itemText) {
@@ -34,6 +41,7 @@ var TodoApp = React.createClass({
     }
 })
 
-var mountNode = document.getElementsByTagName("body")[0]
+var mountNode = document.getElementById("Todo");
 
-React.render(<TodoApp />,mountNode)
+React.render(<TodoApp />,mountNode);
+console.log(React.Children)

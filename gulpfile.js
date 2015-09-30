@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var babel= require('gulp-babel');
+var sass = require('gulp-sass');
 var browserSync = require("browser-sync").create();
 
 var reload = browserSync.reload;
@@ -7,29 +8,24 @@ var reload = browserSync.reload;
 //Browser config
 var config = require("./bs-config");
 
-/**
- * todo
- * 1.打开一个server
- * 2.编辑jsx
- * 3.当文件改变时刷新浏览器
- *
- */
-
 
 var babelOpts = {
     nonStandard: true
 }
-var watchFiles = [
-    "learn_1/*.html",
-    "src/**/*.js",
-]
+
+var src = {
+    "html": "app/*.html",
+    "js": "src/js/**/*.js",
+    "scss" : "src/scss/*.scss"
+}
+
 
 // Static server
-gulp.task('sync', function() {
+gulp.task('server', function() {
     browserSync.init(config);
 });
 
-//JSX
+//JSX && es6
 gulp.task("babel",function () {
     return gulp.src("src/**/*.js")
         .pipe(babel(babelOpts))
@@ -37,7 +33,26 @@ gulp.task("babel",function () {
         .pipe(reload({stream:true}))
 })
 
-gulp.task("reload",["babel","sync"],function () {
-    gulp.watch(watchFiles)
+//sass
+gulp.task('sass', function () {
+    return gulp.src('src/scss/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('build/css'))
+        .pipe(reload({stream: true}));
+});
+
+//reload
+gulp.task("reload",function () {
+    reload({stream:true});
+})
+
+//developer
+gulp.task("dev",["server"],function () {
+
+    gulp.watch(src.scss,["sass"])
+    gulp.watch(src.js,["babel"])
+
+    gulp.watch(src.html).on("change",reload)
+
 })
 

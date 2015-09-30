@@ -19,12 +19,13 @@ module.exports = {
             "port": 8080
         }
     },
-    "files": "./",
+    //"files": "./", //要监听的目录但不能编译
     "watchOptions": {},
     //"server": "./",
     "server":{
         baseDir:"./",
-        index:"app.html"
+        index:"app.html",
+        directory: true
     },
     "proxy": false,
     "port": 3000,
@@ -46,6 +47,8 @@ module.exports = {
     "logSnippet": true,
     "rewriteRules": false,
     "open": "local",
+    //"browser": ["google chrome", "firefox"],
+    //可以设置同时打开多个浏览器
     "browser": "default",
     "xip": false,
     "hostnameSuffix": false,
@@ -56,7 +59,7 @@ module.exports = {
     "scrollRestoreTechnique": "window.name",
     "scrollElements": [],
     "scrollElementMapping": [],
-    "reloadDelay": 0,
+    "reloadDelay": 1000,
     "reloadDebounce": 0,
     "plugins": [],
     "injectChanges": true,
