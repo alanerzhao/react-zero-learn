@@ -1,5 +1,8 @@
 react learn
 ============
-* npm start 
-* npm test
+
+### how to use
+
+* bower install && npm install
+* npm run deve (developer)
 
