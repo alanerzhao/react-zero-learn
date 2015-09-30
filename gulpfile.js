@@ -46,6 +46,10 @@ gulp.task("babel",function () {
     return gulp.src("src/**/*.js")
         .pipe(sourcemaps.init(sourceMapOpts))
         .pipe(babel(babelOpts))
+
+        .on("error",function(err) {
+            console.log(err)
+        })
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('build'))
         .pipe(reload({stream:true}));
@@ -56,6 +60,7 @@ gulp.task('sass', function () {
     return gulp.src('src/scss/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOpts))
+        .on('error', sass.logError)
         .pipe(autoprefixer())
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('build/css'))
