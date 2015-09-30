@@ -3,6 +3,10 @@ react learn
 
 ### how to use
 
-* bower install && npm install
-* npm run deve (developer)
+```bash
+ bower install && npm install
+ npm run dev (developer)
+```
+### update log
+  see `@`TODO.md
 
