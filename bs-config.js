@@ -46,7 +46,7 @@ module.exports = {
     "logFileChanges": true,
     "logSnippet": true,
     "rewriteRules": false,
-    "open": "local",
+    "open": false,
     //"browser": ["google chrome", "firefox"],
     //可以设置同时打开多个浏览器
     "browser": "default",

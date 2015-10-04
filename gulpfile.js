@@ -51,7 +51,7 @@ gulp.task("babel",function () {
             console.log(err)
         })
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest('dist'))
         .pipe(reload({stream:true}));
 });
 
@@ -63,37 +63,37 @@ gulp.task('sass', function () {
         .on('error', sass.logError)
         .pipe(autoprefixer())
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('build/css'))
+        .pipe(gulp.dest('dist/css'))
         .pipe(reload({stream: true}));
 });
 
 //uglify
 gulp.task("jsmin",function () {
-    return gulp.src("build/**/*.js")
+    return gulp.src("dist/**/*.js")
         .pipe(uglify())
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('dist'));
 });
 
 //uncss
 gulp.task("uncss",function () {
-    return gulp.src("build/**/*.css")
+    return gulp.src("dist/**/*.css")
         .pipe(uncss(uncssOpts))
-        .pipe(gulp.dest("build/css"));
+        .pipe(gulp.dest("dist/css"));
 });
 //mincss
 gulp.task('cssmin', function() {
-  return gulp.src('build/**/*.css')
+  return gulp.src('dist/**/*.css')
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest('dist/css'));
 });
 
 //autoprefixer
 gulp.task('prefix', function () {
-    return gulp.src('build/**/*.css')
+    return gulp.src('dist/**/*.css')
     .pipe(sourcemaps.init())
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest('dist/css'));
 });
 
 //reload
@@ -101,7 +101,7 @@ gulp.task("reload",function () {
     reload({stream:true});
 });
 
-//build
+//dist
 gulp.task("build",["cssmin","prefix","jsmin"],function () {
     console.log("ok");
 });

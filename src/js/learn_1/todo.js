@@ -1,8 +1,7 @@
 //es6  syntax
-//
 class HelloMessage extends React.Component {
   render() {
-      return <div>Hello {this.props.name}</div>;
+      return <div>Hello {this.props.name}</div>
     }
 }
 
@@ -34,8 +33,12 @@ var TodoApp = React.createClass({
                 <h3>TODO</h3>
                 <TodoList items={this.state.items} />
                 <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.onChange} value={this.state.texta} />
-                    <button>{'添加#' + (this.state.items.length + 1)}</button>
+                <div className="mui-col-md-3">
+                    <input onChange={this.onChange} className="mui-form-control" value={this.state.texta} />
+                </div>
+                <div className="mui-col-md-1">
+                    <button className="mui-btn" data-mui-color="primary">{'添加#' + (this.state.items.length + 1)}</button>
+                </div>
                 </form>
             </div>
         )
