@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../dist/css/index.css">
     <link rel="stylesheet" href="../bower_components/mui/dist/css/mui.css">
     <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
     <script src="../bower_components/mui/dist/js/mui.js"></script>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
     <style>
@@ -14,11 +15,27 @@
             color: #000;
             font-family:monospace;
         }
+        .add{
+            border:1px solid red;
+        }
+        #tab .tab-header li {
+            <!--display:none;-->
+        }
+        #tab .tab-body div {
+            <!--display:none;-->
+        }
+        #tab .active {
+            display:block;
+        }
+
     </style>
 </head>
 <body>
-    <div id="Child" class="mui-panel"> </div>
-    <div id="render"></div>
-    <div id="renderList"></div>
-    <script src="../dist/js/learn_1/child.js"></script>
+    <div id="Child" class="mui-panel"> 
+        <div id="render"></div>
+        <div id="renderList"></div>
+    </div>
+    <div id="tab"></div>
+
+  <script src="../dist/js/learn_1/component-test.js"></script>
 </body>
