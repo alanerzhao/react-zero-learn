@@ -30,7 +30,7 @@ var uncssOpts = {
 };
 
 var src = {
-    "html": "app/*.html",
+    "html": "**/*.html",
     "js": "src/js/**/*.js",
     "scss" : "src/scss/*.scss"
 };
@@ -46,10 +46,9 @@ gulp.task("babel",function () {
     return gulp.src("src/**/*.js")
         .pipe(sourcemaps.init(sourceMapOpts))
         .pipe(babel(babelOpts))
-
-        .on("error",function(err) {
-            console.log(err)
-        })
+        //.on("error",function(err) {
+            //console.log(err)
+        //})
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('dist'))
         .pipe(reload({stream:true}));
