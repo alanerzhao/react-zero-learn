@@ -28,9 +28,9 @@ module.exports = {
         directory: true
     },
     "proxy": false,
-    "port": 3000,
+    "port": 9999,
     "middleware": false,
-    "serveStatic": [],
+    "serveStatic": ["./json"],
     "ghostMode": {
         "clicks": true,
         "scroll": true,

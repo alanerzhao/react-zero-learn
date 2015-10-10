@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="../dist/css/index.css">
     <link rel="stylesheet" href="../bower_components/mui/dist/css/mui.css">
+
     <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/mui/dist/js/mui.js"></script>
+    <script src="../bower_components/showdown/dist/showdown.js"></script>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
-    <style>
-        .hello {
-            font-size: 18px;
-            color: #000;
-            font-family:monospace;
-        }
-    </style>
 </head>
 <body>
-    <div id="Child" class="mui-panel"> </div>
-    <div id="render"></div>
-    <div id="renderList"></div>
-    <script src="../dist/js/learn_1/child.js"></script>
-</body>
+
+    <div class="mui-container" id="comment">
+        <div class="mui-panel" id="commentBox">
+            box
+        </div>
+    </div>
+
+  <script src="../dist/js/comment/comment.js"></script>
+</html>
