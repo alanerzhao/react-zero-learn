@@ -6,7 +6,8 @@ develop list
 
 - js文件压缩
 - autoprefixer
-- webpack browserify
+- babel (是编译es6 to es5 )
+- webpack browserify (所有环境都支持 common amd umd)
 
 #### complete  
 

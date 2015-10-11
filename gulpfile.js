@@ -8,6 +8,12 @@ var autoprefixer = require('gulp-autoprefixer');
 var uglify = require("gulp-uglify");
 var browserSync = require("browser-sync").create();
 
+var webpack = require("gulp-webpack");
+
+//var webpackConfig = require("./webpack.config.json");
+var named = require('vinyl-named');
+
+
 var reload = browserSync.reload;
 
 //Browser config
@@ -15,7 +21,8 @@ var config = require("./bs-config");
 
 
 var babelOpts = {
-    nonStandard: true
+    nonStandard: true,
+    modules: "common"
 };
 //@see http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 //Type: String Default: nested Values: nested, expanded, compact, compressed
@@ -31,10 +38,15 @@ var uncssOpts = {
 
 var src = {
     "html": "**/*.html",
-    "js": "src/js/**/*.js",
+    "js": ["src/**/*.js","src/**/*.jsx"],
     "scss" : "src/scss/*.scss"
 };
-
+function logFileHelpers() {
+    return through.obj(function (file, enc, cb) {
+        console.log(file.babel.usedHelpers);
+        cb(null, file);
+    });
+}
 
 // Static server
 gulp.task('server',['sass','babel'], function() {
@@ -43,9 +55,10 @@ gulp.task('server',['sass','babel'], function() {
 
 //JSX && es6
 gulp.task("babel",function () {
-    return gulp.src("src/**/*.js")
+    return gulp.src(src.js)
         .pipe(sourcemaps.init(sourceMapOpts))
         .pipe(babel(babelOpts))
+        //.pipe(logFileHelpers)
         //.on("error",function(err) {
             //console.log(err)
         //})
@@ -94,6 +107,12 @@ gulp.task('prefix', function () {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/css'));
 });
+gulp.task("webpack",function () {
+
+    return gulp.src('dist/**/*.js')
+    .pipe(webpack())
+    .pipe(gulp.dest('aa/'));
+})
 
 //reload
 gulp.task("reload",function () {
@@ -101,7 +120,7 @@ gulp.task("reload",function () {
 });
 
 //dist
-gulp.task("build",["cssmin","prefix","jsmin"],function () {
+gulp.task("build",["sass","cssmin","prefix","babel","jsmin"],function () {
     console.log("ok");
 });
 
