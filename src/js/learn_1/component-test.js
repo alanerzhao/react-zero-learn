@@ -2,37 +2,6 @@
  * description
  * 状态驱动
  */
-var Header = React.createClass({
-    //获取状态
-    getInitialState : function () {
-        return {enable: false};
-
-    },
-    componentWillMount: function () {
-        console.log("will");
-    },
-    componentDidMount: function () {
-        console.log("did");
-    },
-    handleClick : function () {
-        //设置状态
-        this.setState({
-            enable: !this.state.enable
-        })
-    },
-    render: function () {
-        var props = this.props;
-        return (
-            <div>
-                <h1 onClick={this.handleClick}>
-                    this is {this.props.data} Component.
-                </h1>
-                <input type="text" disabled={this.state.enable} />
-            </div>
-        )
-    }
-})
-
 var Tab = React.createClass({//{{{
     getInitialState: function () {
         return {
@@ -40,13 +9,29 @@ var Tab = React.createClass({//{{{
             body:this.props.body
         }
     },
-    globalFunc: function () {
+    setCurrent: function (index) {
+        this.setState({"title":this.update(this.props.title,index)})
+        this.setState({"body":this.update(this.props.body,index)})
+    },
+    update: function (param,index) {
+        if(!param) return;
+        _.forEach(param,function(n,key) {
+            if(key == index) {
+                n.active = true;
+            } else {
+                n.active = false;
+
+            }
+        })
+    },
+    onHandleClick : function (index) {
+        this.setCurrent(index)
         console.log(1)
     },
     render: function () {
         return (
             <div>
-                <TabHeader title={this.props.title} body={this.props.body}/>
+                <TabHeader title={this.props.title} onHandleClick={this.onHandleClick}/>
                 <TabBody body={this.props.body}/>
             </div>
         )
@@ -54,44 +39,20 @@ var Tab = React.createClass({//{{{
 })//}}}
 var TabHeader = React.createClass({//{{{
     handleClick: function (index) {
-        this.setCurrent(index)
-
-    },
-    setCurrent: function (index) {
-        var update = _.forEach(this.props.title,function(n,key) {
-            if(key == index) {
-                n.active = true;
-            } else {
-                n.active = false;
-
-            }
-        })
-
-        var updateBody = _.forEach(this.props.body,function(n,key) {
-            if(key == index) {
-                n.active = true;
-            } else {
-                n.active = false;
-
-            }
-        })
-
-        this.setState({"title":update})
-        this.setState({"body":updateBody})
-
-        console.log(this.props)
+        this.props.onHandleClick(index)
     },
     render: function () {
         var _this = this;
         return (
-            <ul className="tab-header"> {
+            <ul className="mui-tabs__bar mui-panel tab-header"> {
                 this.props.title.map(function(item,index) {
 
-                    var isStatus = item.active ? "add" : "";
+                    var isStatus = item.active ? "mui--is-active" : "";
 
                     return <li className={isStatus}
                     onClick={_this.handleClick.bind(this,index)}
-                            key={index}>{item.name}
+                            key={index}>
+                            <a href="#">{item.name}</a>
                         </li>
 
                 },this)
@@ -102,15 +63,14 @@ var TabHeader = React.createClass({//{{{
 })//}}}
 var TabBody = React.createClass({//{{{
     render: function () {
-
         console.log(this.props.body)
-        return ( <div className="tab-body">
-                {
+
+        return (
+            <div className="tab-body"> {
+
                 this.props.body.map(function (item,index) {
-
-                    var isStatus = item.active ? "add" : "";
-
-                    return <div className={isStatus} key={index}>{item.name}</div>
+                    var isStatus = item.active ? "mui--is-active" : "";
+                    return <div className={'mui-tabs__pane mui-panel '+isStatus}  key={index}>{item.name}</div>
 
                 })
             }
@@ -121,15 +81,12 @@ var TabBody = React.createClass({//{{{
 
 var mountNode = document.getElementById("render");
 var tabMount = document.getElementById("tab");
+
 var props = {
-    title:[{name:"tab1",active:true},{name:"tab2",active:false}],
-    body:[{name:"content1",active:true},{name:"content2",active:false}]
+    title:[{name:"tab1",active:true},{name:"tab2"}],
+    body:[{name:"content1",active:true},{name:"content2"}]
 }
 React.render(
     <Tab {...props} />,
     tabMount
-)
-React.render(
-    <Header data="Header" />,
-    mountNode
 )
