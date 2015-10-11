@@ -1,5 +1,6 @@
 react learn
 ============
+[![Build Status](https://travis-ci.org/alanerzhao/react-zero-learn.svg)](https://travis-ci.org/alanerzhao/react-zero-learn)  
 
 ### how to use
 
