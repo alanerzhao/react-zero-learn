@@ -4,8 +4,10 @@ react learn
 
 ### how to use
 
+
 ```bash
- bower install && npm install
+ npm install -g bower && npm install -g gulp  
+ bower install && npm install  
  npm run dev (developer)
 ```
 ### update log
